@@ -5,37 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alunos</title>
 </head>
-
-<style>
-    body{
-        text-align: center;
-        background-color: aqua;
-    }
-
-    img{
-        border: 2px solid blue;
-        width: 500px;
-        
-    }
-
-</style>
-
 <body>
-    
-    <h2> O Relampago marquinhos </h2>
-
-    <img src = "static/marquinhos.jpg">
-
-    <a href="https://oceanbrasil.com/">Visite o site</a>
-
-    <p> Seja bem vido a essa pagina </p>
-
-    <ul>
-        <li>Renan</li>
-        <li>Renata</li>
-        <li>Oseas</li>
-        <li>Izanete</li>
-    </ul>
-
+    <div class="conteudo principal">
+        <h1>Blog aula Ocean</h1>
+        <div class="nav">
+            {%if not session.logado%}
+                <a href="">Login</a>
+            {%else%}
+                <a href="">Logout</a>
+            {%endif%}
+        </div>
+    </div>
 </body>
 </html>
