@@ -13,15 +13,24 @@ app.config.from_object(__name__)
 def conectar():
     return sqlite3.connect(DATABASE)
 
+@app.before_request
 def before_request():
     g.bd = conectar()
 
+@app.teardown_request
 def teardown_request(f):
     g.bd.close()
 
 @app.route("/")
-def Ola():
-    nomeUsuario = "Renan SOuza"
-    listaUsuario = ["Renan", "Oseas", "Renata", "Rosi"]
-    post = {"titulo": "Meu Titulo", "texto": "meu Texto", "data_criacao": "27/03/2024"}
-    return render_template("hello.html", post = post)
+def exibir_posts():
+    sql = "SELECT titulo, texto, data_criacao FROM posts ORDER BY id DESC"
+    resultado = g.bd.execute(sql)
+    post = []
+
+    for titulo, texto, data_criacao in resultado.fetchall():
+        post.append({
+            "titulo":titulo,
+            "texto":texto,
+            "data_criacao":data_criacao
+        })
+    return render_template("exibir_posts.html", post = post)

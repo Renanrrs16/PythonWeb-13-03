@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS post(
+CREATE TABLE IF NOT EXISTS posts(
 id integer primary key autoincrement,
 titulo string not null,
 texto string not null,
